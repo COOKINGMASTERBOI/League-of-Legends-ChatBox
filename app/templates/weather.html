@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block link %} <link rel="stylesheet" href="../static/css/weather_style.css" /> {% endblock %}
+{% block title %}Weather API{% endblock %}
+
+{% block content %}
+    <h1 class="display-3 title" >Where are you going for the Game?</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-4">
+                <h1 class="display-6 city_name"> City Name:</h1>
+                <form method="POST">
+                  <textarea name="city_name" id="city_name" class="form-control"></textarea>
+                  <br />
+                  <div align="center">
+                    <button type="submit" class="btn weather_button">Get Weather Info</button>
+                  </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+{% endblock %}

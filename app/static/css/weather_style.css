@@ -1,0 +1,28 @@
+.title{
+    color: white;
+}
+.city_name{
+    color: white;
+    text-align: center;
+}
+
+.weather_button {
+    color: black;
+    background-color: whitesmoke;
+}
+
+.go_back_button {
+    display: block;
+    margin: auto;
+}
+
+.data {
+    color: white;
+    font-size: 20px;
+}
+.result_body {
+    padding: 5px;
+    display: block;
+    margin-left: 170px;
+    margin-bottom: 50px;
+}

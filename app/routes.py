@@ -7,7 +7,7 @@ from app.models import User, Post
 from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm
-
+import requests
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 
 
@@ -126,3 +126,19 @@ def search():
     user_list = db.session.query(User).all()
     post_list = db.session.query(Post).all()
     return render_template("search.html", user=current_user, user_list=user_list, post_list=post_list)
+
+
+@app.route('/weather', methods=['GET', 'POST'])
+def weather():
+    if request.method == 'POST':
+        city_name = request.form.get('city_name')
+        api_url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=15e5f3241c74bc4f219baaa03567e5b9'.format(
+            city_name)
+        data = requests.get(api_url).json()
+        current_temp = data['main']['temp']
+        temp_max = data['main']['temp_max']
+        temp_min = data['main']['temp_min']
+        return render_template("result.html", user=current_user, city_name=city_name, current_temp=current_temp, temp_min=temp_min, temp_max=temp_max)
+
+    return render_template("weather.html", user=current_user)
+
