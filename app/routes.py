@@ -132,13 +132,14 @@ def search():
 def weather():
     if request.method == 'POST':
         city_name = request.form.get('city_name')
-        api_url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=15e5f3241c74bc4f219baaa03567e5b9'.format(
-            city_name)
-        data = requests.get(api_url).json()
-        current_temp = data['main']['temp']
-        temp_max = data['main']['temp_max']
-        temp_min = data['main']['temp_min']
-        return render_template("result.html", user=current_user, city_name=city_name, current_temp=current_temp, temp_min=temp_min, temp_max=temp_max)
+        if len(city_name) != 0:
+            api_url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=15e5f3241c74bc4f219baaa03567e5b9'.format(
+                city_name)
+            data = requests.get(api_url).json()
+            current_temp = data['main']['temp']
+            temp_max = data['main']['temp_max']
+            temp_min = data['main']['temp_min']
+            return render_template("result.html", user=current_user, city_name=city_name, current_temp=current_temp, temp_min=temp_min, temp_max=temp_max)
 
     return render_template("weather.html", user=current_user)
 
