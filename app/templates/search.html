@@ -9,32 +9,35 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-md-4">
-            <h1 align="center">Search for User</h1>
-            <input class="form-control" id="nameHere" type="text" placeholder="Search..">
+            <div class="row row1">
+                <h1 class="display-4" align="center">Search for User</h1>
+                <input class="form-control" id="nameHere" type="text" placeholder="Search..">
 
-            <ul class="list-group list-group-flush" id="userList">
-                {% for user in user_list %}
-                    <li class="list-group-item">
-
-                            {{ user.username}}
-
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <h1 align="center">Search for Post</h1>
-            <input class="form-control" id="postHere" type="text" placeholder="Search..">
-
-            <ul class="list-group list-group-flush" id="postList">
-                {% for post in post_list %}
+                <ul class="list-group list-group-flush" id="userList">
+                    {% for user in user_list %}
                         <li class="list-group-item">
 
-                                {{ post.body }}
+                                {{ user.username }}
 
                         </li>
                     {% endfor %}
+                </ul>
+            </div>
+            <div class="row row2">
+                <h1 class="display-4" align="center">Search for Post</h1>
+                <input class="form-control" id="postHere" type="text" placeholder="Search..">
 
-            </ul>
+                <ul class="list-group list-group-flush" id="postList">
+                    {% for post in post_list %}
+                            <li class="list-group-item">
+
+                                    {{ post.body }}
+
+                            </li>
+                        {% endfor %}
+
+                </ul>
+            </div>
         </div>
         <div class="col"></div>
 
