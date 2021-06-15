@@ -125,4 +125,4 @@ def comment(postId):
 def search():
     user_list = db.session.query(User).all()
     post_list = db.session.query(Post).all()
-    return render_template("search.html", user=current_user, user_list=user_list, note_list=post_list)
+    return render_template("search.html", user=current_user, user_list=user_list, post_list=post_list)

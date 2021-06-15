@@ -9,36 +9,28 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-md-4">
-            <h1 align="center">Search for users</h1>
+            <h1 align="center">Search for User</h1>
             <input class="form-control" id="nameHere" type="text" placeholder="Search..">
 
             <ul class="list-group list-group-flush" id="userList">
-                {% for note in user_list %}
+                {% for user in user_list %}
                     <li class="list-group-item">
 
-                            {{ note.first_name}}
+                            {{ user.username}}
 
                     </li>
                 {% endfor %}
             </ul>
 
-            <h1 align="center">Search for notes</h1>
-            <input class="form-control" id="noteHere" type="text" placeholder="Search..">
+            <h1 align="center">Search for Post</h1>
+            <input class="form-control" id="postHere" type="text" placeholder="Search..">
 
-            <ul class="list-group list-group-flush" id="noteList">
-                {% for note in note_list %}
-                {#        {% for note in user.notes %}#}
-                {#          <li class="list-group-item">#}
-                {#            {{ user.first_name }} said: {{ note.data }}#}
-                {#          </li>#}
-                {#        {% endfor %}#}
+            <ul class="list-group list-group-flush" id="postList">
+                {% for post in post_list %}
                         <li class="list-group-item">
-                            {% if note.data %}
-                                {{ note.author.first_name }} said: {{ note.data }}
-                                {% if note.comment %}
-                                {{ note.comment }}
-                                {% endif %}
-                            {% endif %}
+
+                                {{ post.body }}
+
                         </li>
                     {% endfor %}
 
@@ -64,9 +56,9 @@ $(document).ready(function(){
 
 <script>
     $(document).ready(function(){
-      $("#noteHere").on("keyup", function() {
+      $("#postHere").on("keyup", function() {
         var value = $(this).val();
-        $("#noteList li").filter(function() {
+        $("#postList li").filter(function() {
           $(this).toggle($(this).text().indexOf(value) > -1)
         });
       });
