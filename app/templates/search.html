@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block link %} <link rel="stylesheet" href="../static/css/search_style.css" /> {% endblock %}
+{% block title %}Search{% endblock %}
+{% block content %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-4">
+            <h1 align="center">Search for users</h1>
+            <input class="form-control" id="nameHere" type="text" placeholder="Search..">
+
+            <ul class="list-group list-group-flush" id="userList">
+                {% for note in user_list %}
+                    <li class="list-group-item">
+
+                            {{ note.first_name}}
+
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h1 align="center">Search for notes</h1>
+            <input class="form-control" id="noteHere" type="text" placeholder="Search..">
+
+            <ul class="list-group list-group-flush" id="noteList">
+                {% for note in note_list %}
+                {#        {% for note in user.notes %}#}
+                {#          <li class="list-group-item">#}
+                {#            {{ user.first_name }} said: {{ note.data }}#}
+                {#          </li>#}
+                {#        {% endfor %}#}
+                        <li class="list-group-item">
+                            {% if note.data %}
+                                {{ note.author.first_name }} said: {{ note.data }}
+                                {% if note.comment %}
+                                {{ note.comment }}
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+            </ul>
+        </div>
+        <div class="col"></div>
+
+    </div>
+    </div>
+
+
+
+<script>
+$(document).ready(function(){
+  $("#nameHere").on("keyup", function() {
+    var value = $(this).val();
+    $("#userList li").filter(function() {
+      $(this).toggle($(this).text().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<script>
+    $(document).ready(function(){
+      $("#noteHere").on("keyup", function() {
+        var value = $(this).val();
+        $("#noteList li").filter(function() {
+          $(this).toggle($(this).text().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+{% endblock %}

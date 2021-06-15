@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+    {% block link %}<link rel="stylesheet" href="../static/css/index_style.css" />{% endblock %}
+
+    {% block content %}
+		 <div class="display_bar">
+			<div class="jumbotron jumbotron-fluid">
+			 	<div class="container">
+			 		<h1 class="display-3 title">League of Legends ChatBox</h1>
+			 	</div>
+			</div>
+			<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+			  <div class="carousel-inner img_slide">
+				<div class="carousel-item active">
+				  <img src="../static/assets/Qiyana.jpg" class="d-block w-50" alt="...">
+				</div>
+				<div class="carousel-item">
+				  <img src="../static/assets/LeeSin.jpg" class="d-block w-50" alt="...">
+				</div>
+				<div class="carousel-item">
+				  <img src="../static/assets/Sett.jpg" class="d-block w-50" alt="...">
+				</div>
+				<div class="carousel-item">
+				  <img src="../static/assets/Aphelios.jpg" class="d-block w-50" alt="...">
+				</div>
+				<div class="carousel-item">
+				  <img src="../static/assets/Rell.jpg" class="d-block w-50" alt="...">
+				</div>
+			  </div>
+			  <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators"  data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators"  data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  </button>
+			<p class="lead bottom_text">Legends Never Die.</p>
+            </div>
+         </div>
+    {% endblock %}

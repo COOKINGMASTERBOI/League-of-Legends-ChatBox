@@ -1,0 +1,36 @@
+.explore_list {
+    background-color: black;
+}
+h4 {
+    color: white;
+
+}
+
+.post_section {
+    margin-top: 20px;
+}
+
+.post_container {
+    margin-bottom: 50px;
+
+}
+
+
+.post_body{
+    color: burlywood;
+    font-size: 30px;
+    font-family: "Times New Roman";
+
+}
+
+.comment_body{
+    color: blueviolet;
+}
+
+.video_list {
+    background-color: black;
+}
+
+iframe {
+    margin-left: 250px;
+}

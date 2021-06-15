@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block link %} <link rel="stylesheet" href="../static/css/login_style.css" /> {% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container login-container">
+		<h1 class="title">LOGIN</h1>
+        <div class="row">
+            <div class="col">
+			</div>
+            <div class="col-sm-12 col-md-8">
+            <form action="" method="post" novalidate="novalidate">
+
+            {#用来实现在配置中激活的csrf保护#}
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+                {% for error in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}
+                 {% for error in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p class="submit_button">{{ form.submit() }}</p>
+            </form>
+            </div>
+            <div class="col">
+			</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <p class="lead bottom_text">Welcome to ChatBox.</p>
+        </div>
+    </div>
+{% endblock %}

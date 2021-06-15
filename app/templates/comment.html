@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block link %} <link rel="stylesheet" href="../static/css/comment_style.css" /> {% endblock %}
+{% block title %}Comment{% endblock %}
+
+{% block content %}
+    <h1 class="display-3 title" >Add Comment:</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-4">
+                <form method="POST">
+                  <textarea name="comment" id="comment" class="form-control"></textarea>
+                  <br />
+                  <div align="center">
+                    <button type="submit" class="btn comment_button">Add Comment</button>
+                  </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+{% endblock %}

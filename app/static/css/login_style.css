@@ -1,0 +1,21 @@
+body{
+    background-color: #000000;
+}
+label{
+    text-align: center;
+    color: whitesmoke;
+}
+
+.container.login-container {
+    width: 500px;
+    background-color: rgba(255,255,255,0.2);
+	margin-top: 8%;
+}
+
+
+bottom_text {
+    color:whitesmoke;
+}
+.submit_button {
+    margin-left: 120px;
+}
