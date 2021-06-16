@@ -38,18 +38,11 @@ def login():
 
             # 然后重定向到登录页面
             return redirect(url_for('login'))
-
         # 这是一个非常方便的方法，当用户名和密码都正确时来解决记住用户是否记住登录状态的问题
         login_user(user, remember=form.remember_me.data)
-
-        # # 此时的next_page记录的是跳转至登录页面是的地址
-        # next_page = request.args.get(url_for('personal_page'))  # 应该是个人首页？
-        #
-        # # 如果next_page记录的地址不存在那么就返回首页
-        # if not next_page or url_parse(next_page).netloc != '':
-        #     next_page = url_for('home')
-        #
-        # # 综上，登录后要么重定向至跳转前的页面，要么跳转至首页
+        if user.username == 'admin':
+            return render_template('admin.html', user=current_user)
+        # 综上，登录后要么重定向至跳转前的页面，要么跳转至首页
         return render_template('personal_page.html', user=current_user)
 
     return render_template('login.html', title='Login', form=form, user=current_user)
@@ -59,6 +52,25 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@login_required
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    user_list = db.session.query(User).all()
+    post_list = db.session.query(Post).all()
+
+    ban_user = User.query.get(request.form.get('ban_user'))
+    delete_post = Post.query.get(request.form.get('delete_post'))
+    if ban_user is not None:
+        db.session.delete(ban_user)
+        db.session.commit()
+        flash('User Banned!', category='success')
+    if delete_post is not None:
+        db.session.delete(delete_post)
+        db.session.commit()
+        flash('Post deleted!', category='success')
+    return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
 
 
 @login_required

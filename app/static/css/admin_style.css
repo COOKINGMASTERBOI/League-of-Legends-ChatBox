@@ -1,0 +1,19 @@
+h1{
+    color: white;
+    text-align: center;
+}
+p {
+    color: white;
+    text-align: center;
+}
+.ban_user {
+    display: block;
+    margin: auto;
+    width: 20%;
+}
+
+.delete_button {
+    color: black;
+    background-color: whitesmoke;
+    width: 15%;
+}

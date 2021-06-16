@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block link %} <link rel="stylesheet" href="../static/css/admin_style.css" /> {% endblock %}
+{% block title %}Admin's Page{% endblock %}
+
+{% block content %}
+    <h1 class="display-3"> ADMIN </h1>
+    <p class="lead">You Login As ADMIN.</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <p>All Users:</p>
+                <li>
+                    {% for user in user_list %}
+                    <p>{{ user.id }}:{{ user.username }}</p>
+                    {% endfor %}
+                </li>
+            </div>
+            <div class="col-md-6">
+                <p>All Posts:</p>
+                <li>
+                    {% for post in post_list %}
+                    <p>{{ post.id }}:{{ post.body }}</p>
+                    {% endfor %}
+                </li>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Ban User by User ID:</p>
+                <form method="POST">
+                  <textarea name="ban_user" class="form-control ban_user"></textarea>
+                  <br>
+                  <div align="center">
+                    <button type="submit" class="btn delete_button">Ban User</button>
+                  </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <p>Delete Post by Post ID:</p>
+                <form method="POST">
+                  <textarea name="delete_post" class="form-control ban_user"></textarea>
+                  <br>
+                  <div align="center">
+                    <button type="submit" class="btn delete_button">Delete Post</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock%}
