@@ -31,8 +31,8 @@
                 socket.emit('left', {}, function() {
                     socket.disconnect();
 
-                    // go back to the login page
-                    window.location.href = "{{ url_for('home') }}";
+                    {#// go back to the login page#}
+                    {#window.location.href = "{{ url_for('pre_chat') }}";#}
                 });
             }
         </script>
@@ -41,6 +41,6 @@
         <h1>Flask-SocketIO-Chat: {{ room }}</h1>
         <textarea id="chat" cols="80" rows="20"></textarea><br><br>
         <input id="text" size="80" placeholder="Enter your message here"><br><br>
-        <a href="{{ url_for('home') }}" onclick="leave_room();">Leave this room</a>
+        <a href="{{ url_for('pre_chat') }}" onclick="leave_room();">Leave this room</a>
     </body>
 </html>

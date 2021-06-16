@@ -4,6 +4,7 @@ from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_session import Session
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 # 添加配置信息
@@ -16,5 +17,8 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 # 绑定app和数据库，以便进行操作
 migrate = Migrate(app, db)
+
+socketio = SocketIO()
+socketio.init_app(app)
 
 from app import routes

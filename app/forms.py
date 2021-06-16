@@ -34,3 +34,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Email Address has been taken')
+
+
+class ChatForm(FlaskForm):
+    """Accepts a nickname and a room."""
+    name = StringField('Name', validators=[DataRequired()])
+    room = StringField('Room', validators=[DataRequired()])
+    submit = SubmitField('Enter Chatroom')
