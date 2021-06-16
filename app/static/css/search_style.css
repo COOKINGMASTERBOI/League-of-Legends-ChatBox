@@ -8,3 +8,8 @@ h1 {
 .row2{
     margin-top: 50px;
 }
+.search_btn{
+    color:black ;
+    background-color: whitesmoke;
+    margin-top: 10px;
+}
