@@ -50,7 +50,7 @@
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ url_for('weather') }}">Game City Weather</a></li>
                         <li><a class="dropdown-item" href="#">Patrick's API</a></li>
-                        <li><a class="dropdown-item" href="#">Joe's API</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('summoner') }}">Search Summoner Info</a></li>
                       </ul>
                  </li>
                  {% if user.username=='admin' %}

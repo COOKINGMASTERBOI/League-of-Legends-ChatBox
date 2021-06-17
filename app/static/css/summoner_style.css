@@ -1,0 +1,39 @@
+h1 {
+    color: white;
+}
+
+.summoner_name {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.input_field {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.submit_button {
+
+    color: black;
+    background-color: white;
+}
+
+.go_back_button {
+    display: block;
+    color: black;
+    background-color: white;
+    width:10%;
+    margin:auto;
+}
+
+.data {
+    text-align: center;
+    color: white;
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 10%;
+}

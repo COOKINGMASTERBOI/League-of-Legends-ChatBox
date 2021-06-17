@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block link %} <link rel="stylesheet" href="../static/css/summoner_style.css" /> {% endblock %}
+{% block title %}OPGG{% endblock %}
+
+{% block content %}
+    <h1 class="display-3 title" >{{ summonerName }}</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <p class="data">{{ rank_type1 }}</p>
+                <p class="data">{{ tier }} {{ rank }}</p>
+                {% if tier == 'CHANLLENGER' %}
+                    <img src="../static/assets/Challenger.png">
+                {% elif tier == 'GRAND MASTER' %}
+                    <img src="../static/assets/Grandmaster.png">
+                {% elif tier == 'MASTER' %}
+                    <img src="../static/assets/Master.png">
+                {% elif tier == 'DIAMOND' %}
+                    <img src="../static/assets/Diamond.png">
+                {% elif tier == 'PLATINUM' %}
+                    <img src="../static/assets/Platinum.png">
+                {% elif tier == 'GOLD' %}
+                    <img src="../static/assets/Gold.png">
+                {% elif tier == 'SILVER' %}
+                    <img src="../static/assets/Silver.png">
+                {% elif tier == 'BRONZE' %}
+                    <img src="../static/assets/Bronze.png.png">
+                {% elif tier == 'IRON' %}
+                    <img src="../static/assets/Iron.png.png">
+                {% endif %}
+
+                <p class="data">{{ rank_type }}</p>
+                <p class="data">{{ tier1 }} {{ rank1 }}</p>
+                {% if tier1 == 'CHANLLENGER' %}
+                    <img src="../static/assets/Challenger.png">
+                {% elif tier1 == 'GRAND MASTER' %}
+                    <img src="../static/assets/Grandmaster.png">
+                {% elif tier1 == 'MASTER' %}
+                    <img src="../static/assets/Master.png">
+                {% elif tier1 == 'DIAMOND' %}
+                    <img src="../static/assets/Diamond.png">
+                {% elif tier1 == 'PLATINUM' %}
+                    <img src="../static/assets/Platinum.png">
+                {% elif tier1 == 'GOLD' %}
+                    <img src="../static/assets/Gold.png">
+                {% elif tier1 == 'SILVER' %}
+                    <img src="../static/assets/Silver.png">
+                {% elif tier1 == 'BRONZE' %}
+                    <img src="../static/assets/Bronze.png.png">
+                {% elif tier1 == 'IRON' %}
+                    <img src="../static/assets/Iron.png.png">
+                {% endif %}
+                <br>
+                <br>
+                <input class=" btn go_back_button" type="button" onclick="location.href='{{ url_for('summoner') }}';" value="Go back">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

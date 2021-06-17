@@ -11,6 +11,8 @@ import requests
 from flask import session
 from flask_socketio import emit, join_room, leave_room
 from . import socketio
+from riotwatcher import LolWatcher
+
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 
 
@@ -95,7 +97,6 @@ def personal_page():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-
     # 判断当前用户是否验证，如果通过的话返回首页
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -154,9 +155,37 @@ def weather():
             current_temp = data['main']['temp']
             temp_max = data['main']['temp_max']
             temp_min = data['main']['temp_min']
-            return render_template("result.html", user=current_user, city_name=city_name, current_temp=current_temp, temp_min=temp_min, temp_max=temp_max)
-
+            return render_template("weather_result.html", user=current_user, city_name=city_name, current_temp=current_temp,
+                                   temp_min=temp_min, temp_max=temp_max)
+        else:
+            redirect(url_for('weather'))
     return render_template("weather.html", user=current_user)
+
+
+@app.route('/summoner', methods=['GET', 'POST'])
+def summoner():
+    if request.method == 'POST':
+        summoner_name = request.form.get('summoner')
+        if len(summoner_name) != 0:
+            watcher = LolWatcher('RGAPI-49de9ae4-499c-4d1d-9007-4a4d3975bdcf')
+            temp = watcher.summoner.by_name('na1', summoner_name)
+            summoner = watcher.league.by_summoner('na1', temp['id'])
+            if len(summoner) != 0:
+                summonerName = summoner[0]['summonerName']
+                rank_type = summoner[0]['queueType']
+                rank_type1 = summoner[1]['queueType']
+                tier = summoner[1]['tier']
+                rank = summoner[1]['rank']
+                tier1 = summoner[0]['tier']
+                rank1 = summoner[0]['rank']
+                return render_template("summoner_result.html", user=current_user, summonerName=summonerName,
+                                       rank_type=rank_type, rank_type1=rank_type1, tier=tier, rank=rank, rank1=rank1, tier1=tier1)
+            else:
+                redirect(url_for('summoner'))
+        else:
+            redirect(url_for('summoner'))
+    return render_template("summoner.html", user=current_user)
+
 
 @app.route('/pre_chat', methods=['GET', 'POST'])
 def pre_chat():

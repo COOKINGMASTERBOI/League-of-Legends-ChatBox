@@ -1,7 +1,3 @@
-
-
-
-
 {% extends 'base.html' %}
 {% block link %} <link rel="stylesheet" href="../static/css/weather_style.css" /> {% endblock %}
 {% block title %}Weather API{% endblock %}
@@ -13,11 +9,11 @@
             <div class="col"></div>
             <div class="col-md-4">
                 <div class="container-fluid result_body">
-                    <p class="data">Current Temperature: {{ current_temp }}</p>
-                    <p class="data">Max Temperature: {{ temp_max }}</p>
-                    <p class="data">Min Temperature: {{ temp_min }}</p>
+                    <p class="data">Current Temperature:  {{ current_temp }} F</p>
+                    <p class="data">Max Temperature:  {{ temp_max }} F</p>
+                    <p class="data">Min Temperature:  {{ temp_min }} F</p>
                 </div>
-                <input class="go_back_button" type="button" onclick="location.href='{{ url_for('weather') }}';" value="Go back">
+                <input class=" btn go_back_button" type="button" onclick="location.href='{{ url_for('weather') }}';" value="Go back">
             </div>
             <div class="col"></div>
         </div>
