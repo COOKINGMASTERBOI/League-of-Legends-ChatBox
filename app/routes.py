@@ -71,10 +71,16 @@ def admin():
         db.session.delete(ban_user)
         db.session.commit()
         flash('User Banned!', category='success')
+        user_list = db.session.query(User).all()
+        post_list = db.session.query(Post).all()
+        return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
     if delete_post is not None:
         db.session.delete(delete_post)
         db.session.commit()
+        user_list = db.session.query(User).all()
+        post_list = db.session.query(Post).all()
         flash('Post deleted!', category='success')
+        return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
     return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
 
 
@@ -91,7 +97,7 @@ def personal_page():
             db.session.add(new_post)
             db.session.commit()
             flash('Post added!', category='success')
-
+            return render_template('personal_page.html', user=current_user)
     return render_template('personal_page.html', user=current_user)
 
 
