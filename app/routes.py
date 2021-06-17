@@ -1,4 +1,5 @@
 # 从app模块中即从__init__.py中导入创建的app应用
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -165,7 +166,6 @@ def weather():
             redirect(url_for('weather'))
     return render_template("weather.html", user=current_user)
 
-<<<<<<< Updated upstream
 
 @app.route('/summoner', methods=['GET', 'POST'])
 def summoner():
@@ -246,9 +246,3 @@ def left(message):
     room = session.get('room')
     leave_room(room)
     emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)
-=======
-@app.route('/twitch', methods=['GET', 'POST'])
-def twitch():
-
-    return render_template('twitch.html', user=current_user)
->>>>>>> Stashed changes
