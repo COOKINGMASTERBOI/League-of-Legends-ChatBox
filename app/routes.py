@@ -173,13 +173,14 @@ def summoner():
             if len(summoner) != 0:
                 summonerName = summoner[0]['summonerName']
                 rank_type = summoner[0]['queueType']
-                rank_type1 = summoner[1]['queueType']
-                tier = summoner[1]['tier']
-                rank = summoner[1]['rank']
-                tier1 = summoner[0]['tier']
-                rank1 = summoner[0]['rank']
-                return render_template("summoner_result.html", user=current_user, summonerName=summonerName,
-                                       rank_type=rank_type, rank_type1=rank_type1, tier=tier, rank=rank, rank1=rank1, tier1=tier1)
+                if len(summoner) > 1:
+                    rank_type1 = summoner[1]['queueType']
+                    tier = summoner[1]['tier']
+                    rank = summoner[1]['rank']
+                    tier1 = summoner[0]['tier']
+                    rank1 = summoner[0]['rank']
+                    return render_template("summoner_result.html", user=current_user, summonerName=summonerName,
+                                           rank_type=rank_type, rank_type1=rank_type1, tier=tier, rank=rank, rank1=rank1, tier1=tier1)
             else:
                 redirect(url_for('summoner'))
         else:
