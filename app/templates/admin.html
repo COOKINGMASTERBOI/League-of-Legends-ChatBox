@@ -4,22 +4,22 @@
 
 {% block content %}
     <h1 class="display-3"> ADMIN </h1>
-    <p class="lead">You Login As ADMIN.</p>
+    <p class="lead title">You Login As ADMIN.</p>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <p>All Users:</p>
+                <p class="data">All Users:</p>
                 <li>
                     {% for user in user_list %}
-                    <p>{{ user.id }}:{{ user.username }}</p>
+                    <p class="data">{{ user.id }}: {{ user.username }}</p>
                     {% endfor %}
                 </li>
             </div>
             <div class="col-md-6">
-                <p>All Posts:</p>
+                <p class="data">All Posts:</p>
                 <li>
                     {% for post in post_list %}
-                    <p>{{ post.id }}:{{ post.body }}</p>
+                    <p class="data">{{ post.id }}: {{ post.body }}</p>
                     {% endfor %}
                 </li>
             </div>
@@ -31,7 +31,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <p>Ban User by User ID:</p>
+                <p class="data">Ban User by User ID:</p>
                 <form method="POST">
                   <textarea rows="1" name="ban_user" class="form-control ban_user"></textarea>
                   <br>
@@ -41,7 +41,7 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <p>Delete Post by Post ID:</p>
+                <p class="data">Delete Post by Post ID:</p>
                 <form method="POST">
                   <textarea rows="1" name="delete_post" class="form-control ban_user"></textarea>
                   <br>

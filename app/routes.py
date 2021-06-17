@@ -45,8 +45,7 @@ def login():
             return redirect(url_for('login'))
         # 这是一个非常方便的方法，当用户名和密码都正确时来解决记住用户是否记住登录状态的问题
         login_user(user, remember=form.remember_me.data)
-        if user.username == 'admin':
-            return render_template('admin.html', user=current_user)
+
         # 综上，登录后要么重定向至跳转前的页面，要么跳转至首页
         return render_template('personal_page.html', user=current_user)
 

@@ -2,9 +2,13 @@ h1{
     color: white;
     text-align: center;
 }
-p {
-    color: white;
+.title{
+
     text-align: center;
+}
+.data{
+    color: white;
+    margin-left: 380px;
 }
 .ban_user {
     display: block;
