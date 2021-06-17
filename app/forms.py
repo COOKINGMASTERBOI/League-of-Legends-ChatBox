@@ -10,17 +10,17 @@ from wtforms.validators import DataRequired, Length
 class LoginForm(FlaskForm):
     # DataRequired，当你在当前表格没有输入而直接到下一个表格时会提示你输入
     username = StringField('Username:', validators=[DataRequired(message='Please Enter Username')])
-    password = PasswordField('Password', validators=[DataRequired(message='Please Enter Password')])
+    password = PasswordField('Password:', validators=[DataRequired(message='Please Enter Password')])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('LOGIN')
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username:', validators=[DataRequired()])
+    email = StringField('Email:', validators=[DataRequired(), Email()])
+    password = PasswordField('Password:', validators=[DataRequired()])
     password2 = PasswordField(
-        'Re-Password', validators=[DataRequired(), EqualTo('password')])
+        'Re-Password:', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     # 验用户名是否重复
