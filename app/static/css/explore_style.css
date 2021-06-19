@@ -3,6 +3,7 @@
     background-color: black;
     border: 1px solid white;
     min-height: 400px;
+
 }
 
 h4 {
@@ -42,10 +43,6 @@ h4 {
     background-color: black;
 }
 
-iframe {
-
-    margin-left: 250px;
-}
 
 .add_comment_button{
 
@@ -59,4 +56,5 @@ iframe {
     display: block;
     margin: auto;
     max-height: 300px;
+    max-width: 600px;
 }
