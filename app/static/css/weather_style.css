@@ -7,15 +7,20 @@
 }
 
 .weather_button {
+
     color: black;
     background-color: whitesmoke;
+    width: 30%;
 }
 
 .go_back_button {
+
     display: block;
     margin: auto;
     color: black;
     background-color: whitesmoke;
+    width: 30%;
+
 }
 
 .data {

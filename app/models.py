@@ -34,6 +34,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db .Column(db.Integer, db.ForeignKey('user.id'))
     comment = db.Column(db.String(140))
+    img = db.Column(db.String(140))
 
     def __repr__(self):
         return '<Post: {}>'.format(self.body)

@@ -9,10 +9,9 @@ label{
 
 .container.register-container {
     width: 500px;
-    background-color: rgba(255,255,255,0.2);
-	margin-top: 8%;
 }
 
 .submit_button {
-    margin-left: 120px;
+    display: block;
+    margin: auto;
 }

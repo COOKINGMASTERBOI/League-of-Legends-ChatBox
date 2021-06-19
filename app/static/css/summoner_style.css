@@ -17,13 +17,14 @@ h1 {
 
     color: black;
     background-color: white;
+    width: 30%;
 }
 
 .go_back_button {
     display: block;
     color: black;
     background-color: white;
-    width:10%;
+    width: 30%;
     margin:auto;
 }
 

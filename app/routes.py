@@ -1,19 +1,25 @@
 # 从app模块中即从__init__.py中导入创建的app应用
-from flask import render_template, flash, redirect, url_for, request
-from app import app
-from app.forms import LoginForm
+from flask import render_template, flash, redirect, url_for, request, session
+from app import app, db
+from app.forms import LoginForm, RegistrationForm, ChatForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
-from app import db
-from app.forms import RegistrationForm, ChatForm
 import requests
-from flask import session
 from flask_socketio import emit, join_room, leave_room
 from . import socketio
 from riotwatcher import LolWatcher
+from werkzeug.utils import secure_filename
+import os
+
+
 
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp'])
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
@@ -63,16 +69,18 @@ def logout():
 def admin():
     user_list = db.session.query(User).all()
     post_list = db.session.query(Post).all()
-
     ban_user = User.query.get(request.form.get('ban_user'))
     delete_post = Post.query.get(request.form.get('delete_post'))
     if ban_user is not None:
-        db.session.delete(ban_user)
-        db.session.commit()
-        flash('User Banned!', category='success')
-        user_list = db.session.query(User).all()
-        post_list = db.session.query(Post).all()
-        return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
+        if ban_user.username == 'admin':
+            flash('Can not delete admin')
+        else:
+            db.session.delete(ban_user)
+            db.session.commit()
+            flash('User Banned!', category='success')
+            user_list = db.session.query(User).all()
+            post_list = db.session.query(Post).all()
+            return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
     if delete_post is not None:
         db.session.delete(delete_post)
         db.session.commit()
@@ -83,16 +91,38 @@ def admin():
     return render_template('admin.html', user=current_user, user_list=user_list, post_list=post_list)
 
 
+@app.route('/admin_createuser', methods=['GET', 'POST'])
+def admin_createuser():
+
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('User Create.', 'success')
+        return redirect(url_for('admin_createuser'))
+    return render_template('admin_createuser.html', title='Register', form=form, user=current_user)
+
+
 @login_required
 @app.route('/personal_page', methods=['GET', 'POST'])
 def personal_page():
     if request.method == 'POST':
         post = request.form.get('post')
+        file = request.files['file']
+
+        if file is not None:
+            if not allowed_file(file.filename):
+                flash('file type not allowed')
+            basepath = os.path.dirname(__file__)  # 当前文件所在路径
+            upload_path = os.path.join(basepath, 'static/user_upload', secure_filename(file.filename))
+            file.save(upload_path)
 
         if len(post) < 1:
             flash('Post is too short!', category='error')
         else:
-            new_post = Post(body=post, author=current_user)
+            new_post = Post(body=post, author=current_user, img=file.filename)
             db.session.add(new_post)
             db.session.commit()
             flash('Post added!', category='success')
@@ -104,7 +134,7 @@ def personal_page():
 def register():
     # 判断当前用户是否验证，如果通过的话返回首页
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     form = RegistrationForm()
 
     if form.validate_on_submit():
@@ -139,6 +169,7 @@ def comment(postId):
                 post.comment = comm
             db.session.commit()
             flash('Comment added!', category='success')
+            redirect(url_for('explore'))
     return render_template('comment.html', user=current_user)
 
 

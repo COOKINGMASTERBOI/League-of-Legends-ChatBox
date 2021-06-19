@@ -1,22 +1,31 @@
 .explore_list {
+
     background-color: black;
+    border: 1px solid white;
+    min-height: 400px;
 }
+
 h4 {
+
     color: white;
 
 }
 
 .post_section {
+
     margin-top: 20px;
+
 }
 
 .post_container {
+
     margin-bottom: 50px;
 
 }
 
 
 .post_body{
+
     color: burlywood;
     font-size: 30px;
     font-family: "Times New Roman";
@@ -24,13 +33,30 @@ h4 {
 }
 
 .comment_body{
+
     color: blueviolet;
 }
 
 .video_list {
+
     background-color: black;
 }
 
 iframe {
+
     margin-left: 250px;
+}
+
+.add_comment_button{
+
+    display: block;
+    color: black;
+    background-color: white;
+    width: 30%;
+    margin: 30px auto auto;
+}
+.post_image {
+    display: block;
+    margin: auto;
+    max-height: 300px;
 }

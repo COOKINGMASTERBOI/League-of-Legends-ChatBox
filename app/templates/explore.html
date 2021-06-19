@@ -5,36 +5,54 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 post_section">
+            <div class="col"></div>
+            <div class="col-md-5 post_section">
                 {% for post in post_list %}
                   <li class="list-group-item explore_list">
-                      <h4 class="display-6 post_user">{{ post.author.username }} Post: </h4>
-                      <div class="post_container">
-                          <p class="post_body">
-                            {{ post.body }}
-                          </p>
+                      <div class="row">
+                          <div class="col-6">
+                              <h4 class="display-6 post_user">{{ post.author.username }} Post: </h4>
+                              <div class="post_container">
+                                  <p class="post_body">
+                                        {{ post.body }}
+                                  </p>
 
-                          {% if post.comment != None %}
-                              {% set comment_list=post.comment.split(";") %}
-                              {% set comment_list=comment_list[:-1] %}
-                              {% for comment in comment_list %}
-                                    <p class="comment_body"> {{ comment }}</p>
-                              {% endfor %}
-                          {% endif %}
-                          <input type="button" onclick="location.href='/comment/{{ post.id}}';" value="Add Comment">
-{#                          <a href="/comment/{{ post.id}}">Add Comment</a>#}
+                                  {% if post.comment != None %}
+                                      {% set comment_list=post.comment.split(";") %}
+                                      {% set comment_list=comment_list[:-1] %}
+                                      {% for comment in comment_list %}
+                                          <p class="comment_body"> {{ comment }}</p>
+                                      {% endfor %}
+                                  {% endif %}
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              {% if post.img %}
+                                    <img class="post_image" src="../static/user_upload/{{ post.img }}">
+                              {% endif %}
+                          </div>
                       </div>
+                      <div class="row">
+                          <div class="col">
+                              <a href="/comment/{{ post.id}}" class="btn add_comment_button">Add Comment</a>
+                          </div>
+                      </div>
+
                   </li>
                 {% endfor %}
             </div>
-        <div class="col-md-6">
-            <li class="list-group-item video_list">
-
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ZHg6O9rsnaM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Wv6ngKCsE7c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/LGwILPzWuw8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </li>
-        </div>
+            <div class="col-md-5">
+                <li class="list-group-item video_list">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZHg6O9rsnaM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/fB8TyLTD7EE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Wv6ngKCsE7c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/aR-KAldshAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/LGwILPzWuw8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/D4L0OkSrsI8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/zF5Ddo9JdpY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </li>
+            </div>
+            <div class="col"></div>
         </div>
     </div>
 {% endblock %}

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-{% block link %} <link rel="stylesheet" href="../static/css/register_style.css" /> {% endblock %}
-{% block title %}Register{% endblock %}
+{% block link %} <link rel="stylesheet" href="../static/css/admin_register.css" /> {% endblock %}
+{% block title %}Admin Create User{% endblock %}
 {% block content %}
+    <h1 class="display-3 title">Admin Create User</h1>
     <div class="container register-container">
-		<h1 class="title">REGISTER</h1>
         <div class="row">
-            <div class="col">
-			</div>
+            <div class="col"></div>
             <div class="col-sm-12 col-md-8">
             <form action="" method="post" novalidate="novalidate">
                 {{ form.hidden_tag() }}
@@ -38,17 +37,10 @@
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
-                <p class="submit_button">{{ form.submit() }}</p>
+                <p class="btn submit_button">{{ form.submit() }}</p>
             </form>
             </div>
-            <div class="col">
-			</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-
-            <p class="lead bottom_text">Welcome to ChatBox.</p>
+            <div class="col"></div>
         </div>
     </div>
 {% endblock %}

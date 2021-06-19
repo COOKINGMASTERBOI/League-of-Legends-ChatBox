@@ -8,7 +8,7 @@ h1{
 }
 .data{
     color: white;
-    margin-left: 380px;
+    text-align: center;
 }
 .ban_user {
     display: block;
@@ -19,5 +19,5 @@ h1{
 .delete_button {
     color: black;
     background-color: whitesmoke;
-    width: 15%;
+    width: 20%;
 }
