@@ -15,7 +15,7 @@ import os
 
 
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'JPEG', 'JPG', 'PNG', 'bmp'])
 
 
 def allowed_file(filename):
