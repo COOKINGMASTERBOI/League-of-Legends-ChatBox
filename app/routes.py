@@ -115,9 +115,10 @@ def personal_page():
         if file is not None:
             if not allowed_file(file.filename):
                 flash('file type not allowed')
-            basepath = os.path.dirname(__file__)  # 当前文件所在路径
-            upload_path = os.path.join(basepath, 'static/user_upload', secure_filename(file.filename))
-            file.save(upload_path)
+            else:
+                basepath = os.path.dirname(__file__)  # 当前文件所在路径
+                upload_path = os.path.join(basepath, 'static/user_upload', secure_filename(file.filename))
+                file.save(upload_path)
 
         if len(post) < 1:
             flash('Post is too short!', category='error')
