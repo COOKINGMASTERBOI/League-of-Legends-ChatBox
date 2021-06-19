@@ -204,7 +204,7 @@ def summoner():
     if request.method == 'POST':
         summoner_name = request.form.get('summoner')
         if len(summoner_name) != 0:
-            watcher = LolWatcher('RGAPI-49de9ae4-499c-4d1d-9007-4a4d3975bdcf')
+            watcher = LolWatcher('RGAPI-875082ec-a71a-4e85-a78a-aa935b7a3edc')
             temp = watcher.summoner.by_name('na1', summoner_name)
             summoner = watcher.league.by_summoner('na1', temp['id'])
             if len(summoner) != 0:
