@@ -12,9 +12,7 @@ from riotwatcher import LolWatcher
 from werkzeug.utils import secure_filename
 import os
 
-
-
-# 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
+ # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'JPEG', 'JPG', 'PNG', 'bmp'])
 
 
@@ -93,7 +91,6 @@ def admin():
 
 @app.route('/admin_createuser', methods=['GET', 'POST'])
 def admin_createuser():
-
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
@@ -192,7 +189,8 @@ def weather():
             current_temp = data['main']['temp']
             temp_max = data['main']['temp_max']
             temp_min = data['main']['temp_min']
-            return render_template("weather_result.html", user=current_user, city_name=city_name, current_temp=current_temp,
+            return render_template("weather_result.html", user=current_user, city_name=city_name,
+                                   current_temp=current_temp,
                                    temp_min=temp_min, temp_max=temp_max)
         else:
             redirect(url_for('weather'))
@@ -221,7 +219,7 @@ def summoner():
                                            rank1=rank1, tier1=tier1)
 
                 return render_template("summoner_result.html", user=current_user, summonerName=summonerName,
-                                       rank_type=rank_type, tier=tier, rank=rank,)
+                                       rank_type=rank_type, tier=tier, rank=rank, )
             else:
                 redirect(url_for('summoner'))
         else:
@@ -252,30 +250,3 @@ def chat():
     if name == '' or room == '':
         return redirect(url_for('home'))
     return render_template('chat.html', name=name, room=room, user=current_user)
-
-
-@socketio.on('joined', namespace='/chat')
-def joined(message):
-    """Sent by clients when they enter a room.
-    A status message is broadcast to all people in the room."""
-    room = session.get('room')
-    join_room(room)
-    emit('status', {'msg': session.get('name') + ' has entered the room.'}, room=room)
-
-
-@socketio.on('text', namespace='/chat')
-def text(message):
-    """Sent by a client when the user entered a new message.
-    The message is sent to all people in the room."""
-    room = session.get('room')
-    emit('message', {'msg': session.get('name') + ':' + message['msg']}, room=room)
-
-
-@socketio.on('left', namespace='/chat')
-def left(message):
-    """Sent by clients when they leave a room.
-    A status message is broadcast to all people in the room."""
-    room = session.get('room')
-    leave_room(room)
-    emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)
-0
