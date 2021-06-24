@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
 import requests
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from riotwatcher import LolWatcher
 from werkzeug.utils import secure_filename
 import os
@@ -226,26 +226,6 @@ def summoner():
     return render_template("summoner.html", user=current_user)
 
 
-@app.route('/pre_chat', methods=['GET', 'POST'])
-def pre_chat():
-    """Login form to enter a room."""
-    form = ChatForm()
-    if form.validate_on_submit():
-        session['name'] = form.name.data
-        session['room'] = form.room.data
-        return redirect(url_for('chat'))
-    elif request.method == 'GET':
-        form.name.data = session.get('name', '')
-        form.room.data = session.get('room', '')
-    return render_template('pre_chat.html', form=form, user=current_user)
-
-
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    """Chat room. The user's name and room must be stored in
-    the session."""
-    name = session.get('name', '')
-    room = session.get('room', '')
-    if name == '' or room == '':
-        return redirect(url_for('home'))
-    return render_template('chat.html', name=name, room=room, user=current_user)
+    return render_template("chat.html", user=current_user)
