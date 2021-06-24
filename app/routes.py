@@ -6,13 +6,12 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
 import requests
-from flask_socketio import emit, join_room, leave_room
-from . import socketio
+from flask_socketio import SocketIO
 from riotwatcher import LolWatcher
 from werkzeug.utils import secure_filename
 import os
 
- # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
+# 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'JPEG', 'JPG', 'PNG', 'bmp'])
 
 
@@ -202,7 +201,7 @@ def summoner():
     if request.method == 'POST':
         summoner_name = request.form.get('summoner')
         if len(summoner_name) != 0:
-            watcher = LolWatcher('RGAPI-875082ec-a71a-4e85-a78a-aa935b7a3edc')
+            watcher = LolWatcher('RGAPI-e2771db4-347e-4ef2-9256-4b36223a53a9')
             temp = watcher.summoner.by_name('na1', summoner_name)
             summoner = watcher.league.by_summoner('na1', temp['id'])
             if len(summoner) != 0:
