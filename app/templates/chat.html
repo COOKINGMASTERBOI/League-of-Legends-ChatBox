@@ -1,46 +1,25 @@
 <html>
     <head>
-        <title>Flask-SocketIO-Chat: {{ room }}</title>
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-        <script type="text/javascript" charset="utf-8">
-            var socket;
-            $(document).ready(function(){
-                socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
-                socket.on('connect', function() {
-                    socket.emit('joined', {});
-                });
-                socket.on('status', function(data) {
-                    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
-                });
-                socket.on('message', function(data) {
-                    $('#chat').val($('#chat').val() + data.msg + '\n');
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
-                });
-                $('#text').keypress(function(e) {
-                    var code = e.keyCode || e.which;
-                    if (code == 13) {
-                        text = $('#text').val();
-                        $('#text').val('');
-                        socket.emit('text', {msg: text});
-                    }
-                });
-            });
-            function leave_room() {
-                socket.emit('left', {}, function() {
-                    socket.disconnect();
-
-                    {#// go back to the login page#}
-                    {#window.location.href = "{{ url_for('pre_chat') }}";#}
-                });
-            }
-        </script>
+        <meta charset="UTF-8">
+        <title>SocketIO Example</title>
     </head>
     <body>
-        <h1>Flask-SocketIO-Chat: {{ room }}</h1>
-        <textarea id="chat" cols="80" rows="20"></textarea><br><br>
-        <input id="text" size="80" placeholder="Enter your message here"><br><br>
-        <a href="{{ url_for('pre_chat') }}" onclick="leave_room();">Leave this room</a>
+        <input type="text" id="message">
+        <button id="send">Send</button>
+
+        <input type="text" id="username">
+        <button id="send_username">Send Username</button>
+
+        <br>
+        <br>
+        <br>
+
+        Send To: <input type="text" id="send_to_username">
+        Message: <input type="text" id="private_message">
+        <button id="send_private_message">Send</button>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js%22%3E"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
 </html>

@@ -225,3 +225,5 @@ def summoner():
             redirect(url_for('summoner'))
     return render_template("summoner.html", user=current_user)
 
+
+
