@@ -13,6 +13,7 @@ import os
 
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'JPEG', 'JPG', 'PNG', 'bmp'])
+socketio = SocketIO(app, manage_session=False)
 
 
 def allowed_file(filename):
@@ -229,3 +230,9 @@ def summoner():
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     return render_template("chat.html", user=current_user)
+
+
+@socketio.on('my event')
+def handle_my_custom_event(json, methods=['GET', 'POST']):
+    print('received my event: ' + str(json))
+    socketio.emit('my response', json)
