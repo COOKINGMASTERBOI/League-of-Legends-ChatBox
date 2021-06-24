@@ -1,0 +1,37 @@
+.message_panel {
+    color: white;
+    text-align: center;
+}
+.send_button {
+    color: black;
+    background-color: white;
+    display: block;
+    margin: auto;
+    width: 20%;
+}
+
+.message_input {
+    display: block;
+    width: 20%;
+    margin: 50px auto auto;
+}
+
+.leave_button {
+    color: black;
+    background-color: white;
+    display: block;
+    width: 20%;
+    margin: 50px auto auto;
+}
+
+p {
+    margin-left: 600px;
+    color: white;
+    font-size: 15px;
+}
+.message_holder {
+    display: block;
+    margin: auto;
+    min-height: 600px;
+    border: 1px solid white;
+}
