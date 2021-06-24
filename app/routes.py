@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
 import requests
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from riotwatcher import LolWatcher
 from werkzeug.utils import secure_filename
 import os
@@ -226,4 +226,6 @@ def summoner():
     return render_template("summoner.html", user=current_user)
 
 
-
+@app.route('/chat', methods=['GET', 'POST'])
+def chat():
+    return render_template("chat.html", user=current_user)
