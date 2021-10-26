@@ -12,4 +12,5 @@ class Config(object):
 
     # 如果你不打算使用mysql，使用这个连接sqlite也可以
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
+    print(SQLALCHEMY_DATABASE_URI)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
